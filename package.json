@@ -1,0 +1,19 @@
+{
+  "name": "react_risingstack_tutorial",
+  "version": "1.0.0",
+  "description": "React toy app",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/powersjcb/react_risingstack_tutorial.git"
+  },
+  "author": "Jacob Powers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powersjcb/react_risingstack_tutorial/issues"
+  },
+  "homepage": "https://github.com/powersjcb/react_risingstack_tutorial"
+}
