@@ -9,10 +9,12 @@ const PATH_DIST   = path.resolve(__dirname, '../../dist');
 
 app.use('/styles', Express.static(PATH_STYLES));
 app.use(Express.static(PATH_DIST));
+app.use(require('morgan')('dev'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
+
 
 server = app.listen(process.env.PORT || 3000, () => {
   var port = server.address().port;
