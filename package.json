@@ -2,10 +2,13 @@
   "name": "react_risingstack_tutorial",
   "version": "1.0.0",
   "description": "React toy app",
-  "main": "webpack.config.js",
+  "main": "src/server/index.js",
   "scripts": {
+    "start":"node src/server/index.js",
+    "postinstall": "webpack --config config/webpack.js",
+    "webpack": "webpack --config config/webpack.js",
+    "webpack-watch": "webpack --config config/webpack.js --watch --colors",
     "lint": "eslint . --ext .js --ext .jsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
