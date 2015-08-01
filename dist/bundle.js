@@ -59,7 +59,7 @@
 	var attachElement = document.getElementById('app');
 
 	var state = {
-	  person: {
+	  users: [{
 	    name: 'Jacob',
 	    items: [{
 	      name: 'Car',
@@ -74,14 +74,31 @@
 	      color: 'Sandblasted Aluminum',
 	      weight: 5
 	    }]
-	  }
+	  }, {
+	    name: 'Ming',
+	    items: [{
+	      name: 'Bunny',
+	      color: 'blue',
+	      weight: 0
+	    }, {
+	      name: 'Phone',
+	      color: 'Sandblasted Aluminum',
+	      weight: 0.4
+	    }, {
+	      name: 'Camera',
+	      color: 'black',
+	      weight: 5
+	    }]
+	  }]
 	};
+
+	var app;
 
 	_debug2['default'].enable('myApp*');
 
 	// create new app, attach to element
 
-	var app = new _app2['default']({
+	app = new _app2['default']({
 	  state: state
 	});
 
@@ -23235,7 +23252,16 @@
 
 	var _reactAddons2 = _interopRequireDefault(_reactAddons);
 
+	var _User = __webpack_require__(181);
+
+	var _User2 = _interopRequireDefault(_User);
+
 	var _configApp = __webpack_require__(180);
+
+	/*
+	* @class AppRoot
+	* @extends React.Component
+	*/
 
 	var _configApp2 = _interopRequireDefault(_configApp);
 
@@ -23251,6 +23277,24 @@
 	  // Prop types validation
 
 	  _createClass(AppRoot, [{
+	    key: 'shouldComponentUpdate',
+
+	    /*
+	    * AppRootly PureRenderMixin
+	    * Mixin workaround for ES6
+	    *
+	    * @method shouldComponentUpdate
+	    * @returns {Boolean}
+	    */
+	    value: function shouldComponentUpdate() {
+	      return _reactAddons2['default'].addons.PureRenderMixin.shouldComponentUpdate.apply(this, arguments);
+	    }
+
+	    /*
+	    * @method render
+	    * @returns {JSX}
+	    */
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _reactAddons2['default'].createElement(
@@ -23260,6 +23304,13 @@
 	          'h1',
 	          null,
 	          _configApp2['default'].title
+	        ),
+	        _reactAddons2['default'].createElement(
+	          'div',
+	          { className: 'user' },
+	          this.props.state.users.map(function (item, key) {
+	            return _reactAddons2['default'].createElement(_User2['default'], { key: key, item: item });
+	          })
 	        )
 	      );
 	    }
@@ -23285,6 +23336,163 @@
 
 	module.exports = config
 
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _reactAddons = __webpack_require__(6);
+
+	var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+	var _Item = __webpack_require__(182);
+
+	/*
+	*
+	*
+	*/
+
+	var _Item2 = _interopRequireDefault(_Item);
+
+	var User = (function (_React$Component) {
+	  _inherits(User, _React$Component);
+
+	  function User() {
+	    _classCallCheck(this, User);
+
+	    _get(Object.getPrototypeOf(User.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(User, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate() {
+	      return _reactAddons2['default'].addons.PureRenderMixin.shouldComponentUpdate.apply(this, arguments);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this.props.item);
+
+	      return _reactAddons2['default'].createElement(
+	        'div',
+	        { className: 'user' },
+	        _reactAddons2['default'].createElement(
+	          'h2',
+	          null,
+	          this.props.item.name
+	        ),
+	        _reactAddons2['default'].createElement(
+	          'ul',
+	          null,
+	          this.props.item.items.map(function (item, key) {
+	            return _reactAddons2['default'].createElement(_Item2['default'], { key: key, item: item });
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return User;
+	})(_reactAddons2['default'].Component);
+
+	_Item2['default'].propTypes = {
+	  item: _reactAddons2['default'].PropTypes.object.isRequired
+	};
+
+	exports['default'] = User;
+	module.exports = exports['default'];
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _reactAddons = __webpack_require__(6);
+
+	var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+	var Item = (function (_React$Component) {
+	  _inherits(Item, _React$Component);
+
+	  function Item() {
+	    _classCallCheck(this, Item);
+
+	    _get(Object.getPrototypeOf(Item.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(Item, [{
+	    key: "shouldComponentUpdate",
+	    value: function shouldComponentUpdate() {
+	      return _reactAddons2["default"].addons.PureRenderMixin.shouldComponentUpdate.apply(this, arguments);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _reactAddons2["default"].createElement(
+	        "li",
+	        { className: "item" },
+	        _reactAddons2["default"].createElement(
+	          "div",
+	          null,
+	          "Description: ",
+	          this.props.item.desc
+	        ),
+	        _reactAddons2["default"].createElement(
+	          "div",
+	          null,
+	          "Wt: ",
+	          this.props.item.weight
+	        ),
+	        _reactAddons2["default"].createElement(
+	          "div",
+	          null,
+	          "Color: ",
+	          this.props.item.color
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Item;
+	})(_reactAddons2["default"].Component);
+
+	Item.propTypes = {
+	  item: _reactAddons2["default"].PropTypes.object.isRequired
+	};
+
+	exports["default"] = Item;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);
